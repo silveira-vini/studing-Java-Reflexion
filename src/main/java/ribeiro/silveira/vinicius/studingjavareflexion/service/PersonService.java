@@ -8,6 +8,6 @@ import ribeiro.silveira.vinicius.studingjavareflexion.service.DTO.PersonDTO;
 public class PersonService {
 
     public PersonDTO list(Person person) {
-        return new PersonDTO(person.getName(), person.getCpf());
+        return new PersonDTO(person.getName(), person.getAge(), person.getCpf());
     }
 }

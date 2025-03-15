@@ -7,6 +7,6 @@ import ribeiro.silveira.vinicius.studingjavareflexion.model.Person;
 public class PersonRepository {
 
     public Person list() {
-        return new Person(1L, "Vinicius Silveira", "021.800.531-92");
+        return new Person(1L, "Vinicius Silveira", 38,  "021.800.531-92");
     }
 }
