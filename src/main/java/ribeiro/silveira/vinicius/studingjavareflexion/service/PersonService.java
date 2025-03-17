@@ -2,7 +2,7 @@ package ribeiro.silveira.vinicius.studingjavareflexion.service;
 
 import org.springframework.stereotype.Service;
 import ribeiro.silveira.vinicius.studingjavareflexion.model.Person;
-import ribeiro.silveira.vinicius.studingjavareflexion.service.DTO.PersonDTO;
+import ribeiro.silveira.vinicius.studingjavareflexion.model.PersonDTO;
 
 @Service
 public class PersonService {
