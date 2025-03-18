@@ -1,34 +1,28 @@
 package ribeiro.silveira.vinicius.studingjavareflexion;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
-import ribeiro.silveira.vinicius.studingjavareflexion.model.PersonDTO;
 import ribeiro.silveira.vinicius.studingjavareflexion.model.Person;
+import ribeiro.silveira.vinicius.studingjavareflexion.model.PersonDTO;
 import ribeiro.silveira.vinicius.studingjavareflexion.repository.PersonRepository;
-import ribeiro.silveira.vinicius.studingjavareflexion.service.ReflectionTransformer;
+import ribeiro.silveira.vinicius.studingjavareflexion.service.PersonService;
 
 import java.lang.reflect.InvocationTargetException;
 
 @SpringBootTest
 public class ReflectionTransformerTest {
 
-    @Autowired
-    private PersonRepository personRepository;
-
-    @BeforeEach
-    void setUp() {
-        PersonRepository personRepository = new PersonRepository();
-    }
+    private final Person person = new PersonRepository().list();
 
     @Test
-    public void shouldConvertPersonToPersonDTO() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        Person person = personRepository.list();
-        ReflectionTransformer reflectionTransformer = new ReflectionTransformer();
-        PersonDTO personDtoTransformed = reflectionTransformer.transform(person);
-        Assert.isInstanceOf(PersonDTO.class, personDtoTransformed);
+    public void shouldConvertPersonToPersonDTO() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        PersonDTO personDTO = new PersonService().list();
+        Assertions.assertInstanceOf(PersonDTO.class, personDTO);
+        Assertions.assertEquals(personDTO.getName(), person.getName());
+        Assertions.assertEquals(personDTO.getAge(), person.getAge());
+        Assertions.assertEquals(personDTO.getCpf(), person.getCpf());
     }
 
 }
