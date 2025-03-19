@@ -13,15 +13,11 @@ public record Cpf(String cpf) {
     }
 
     public static boolean validate(String cpf) {
-        // Remove caracteres não numéricos
+        // código de validação de CPF brasileiro
         cpf = cpf.replaceAll("\\D", "");
-
-        // Verifica se o CPF possui 11 dígitos
         if (cpf.length() != 11) {
             return false;
         }
-
-        // Verifica se todos os dígitos são iguais
         boolean allDigitsEqual = true;
         for (int i = 1; i < 11; i++) {
             if (cpf.charAt(i) != cpf.charAt(0)) {
@@ -32,8 +28,6 @@ public record Cpf(String cpf) {
         if (allDigitsEqual) {
             return false;
         }
-
-        // Calcula o primeiro dígito verificador
         int sum = 0;
         for (int i = 0; i < 9; i++) {
             sum += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
@@ -42,13 +36,9 @@ public record Cpf(String cpf) {
         if (firstCheckDigit >= 10) {
             firstCheckDigit = 0;
         }
-
-        // Verifica o primeiro dígito verificador
         if (Character.getNumericValue(cpf.charAt(9)) != firstCheckDigit) {
             return false;
         }
-
-        // Calcula o segundo dígito verificador
         sum = 0;
         for (int i = 0; i < 10; i++) {
             sum += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
@@ -57,12 +47,6 @@ public record Cpf(String cpf) {
         if (secondCheckDigit >= 10) {
             secondCheckDigit = 0;
         }
-
-        // Verifica o segundo dígito verificador
-        if (Character.getNumericValue(cpf.charAt(10)) != secondCheckDigit) {
-            return false;
-        }
-
-        return true;
+        return Character.getNumericValue(cpf.charAt(10)) == secondCheckDigit;
     }
 }

@@ -10,8 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 @Service
 public class PersonService {
 
-    public PersonDTO list() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public PersonDTO list() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         Person person = new PersonRepository().list();
-        return new ReflectionTransformer().transform(person, PersonDTO.class);
+        return new ReflectionTransformer().transform(person);
     }
 }

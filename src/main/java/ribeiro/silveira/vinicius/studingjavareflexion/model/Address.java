@@ -5,11 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Person {
+public class Address {
 
-    private Long id;
-    private String name;
-    private int age;
-    private Cpf cpf;
+    private String street;
+    private Integer number;
+    private String city;
 
 }

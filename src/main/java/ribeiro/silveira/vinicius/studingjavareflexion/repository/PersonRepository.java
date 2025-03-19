@@ -8,7 +8,7 @@ import ribeiro.silveira.vinicius.studingjavareflexion.model.Person;
 public class PersonRepository {
 
     public Person list() {
-        return new Person(1L, "Vinicius Silveira", 38,  new Cpf("021.900.541-93"));
+        return new Person(1L, "Vinicius Silveira", 38,  new Cpf("021.900.541-92"));
     }
 
 
